@@ -77,10 +77,7 @@ class Brick(_Brick):
             'alt':         'json',
             'v':           '2'
         })
-        try:
-            client.fetch('https://gdata.youtube.com/feeds/api/videos/?' + qs, cb)
-        except client.HTTPError, e:
-            self.logger.error(self.id + 'AsyncHTTPClient fetch error: ' + e)
+        client.fetch('https://gdata.youtube.com/feeds/api/videos/?' + qs, cb)
 
     def _search_msg(self, msg):
         def cb(results):
@@ -95,24 +92,3 @@ class YoutubePost(object):
         self.title    = title
         self.__type__ = type(self).__name__
 
-# ==== Tests ====
-
-from wall import WallApp
-from tornado.testing import AsyncTestCase
-from tornado.ioloop import IOLoop
-
-class BrickTest(AsyncTestCase):
-    def setUp(self):
-        super(BrickTest, self).setUp()
-        self.app = WallApp()
-        self.brick = self.app.bricks[0]
-
-    def test_search(self):
-        def cb(results):
-            self.assertTrue(results)
-            self.stop()
-        self.brick.search('Babylon 5', cb)
-        self.wait()
-
-    def get_new_ioloop(self):
-        return IOLoop.instance()
