@@ -1,15 +1,5 @@
-/* 
- * Wall
- * 
- * Colors:
- *  - text:                  #eee
- *  - background:            #333
- *  - background, secondary: #222
- *  - delimiter:             #555
- */
+/* youtube stylesheet */
 
 #youtube-player-container {
-    overflow: hidden;
-    font-size: 0;
+    font-size: 0; /* this is needed to avoid scrollbars */
 }
-
