@@ -4,4 +4,4 @@ python:
 install:  "pip install -r requirements.txt --use-mirrors"
 services:
   - redis-server
-script:  python2 -m unittest -v wall wall.util wall.bricks.url
+script:  python2 -m unittest -v wall wall.util 
